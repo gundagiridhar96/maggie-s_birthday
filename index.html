@@ -259,7 +259,7 @@ Once again, happy birthday, Mitapally. You will always be special to me. 💗</d
 
 <div id="lightbox" onclick="this.classList.remove('on')"><img alt=""></div>
 <button id="music" title="Play / pause music" aria-label="Play or pause music">🎵</button>
-<audio id="audio" src="song.mp3" loop preload="none"></audio>
+<audio id="audio" src="song.mp3" loop preload="auto"></audio>
 
 <script>
 /* ===== EDIT THESE ===== */
@@ -335,6 +335,7 @@ function openSecret(){
 
 /* music: browsers only allow sound after a tap, so it starts on "Open" */
 const audio = $('#audio'), mBtn = $('#music');
+audio.load(); // start buffering the song right away so it plays instantly on tap
 function setPlaying(on){ mBtn.classList.toggle('playing', on); mBtn.textContent = on ? '🎶' : '🎵'; }
 function start(){
   go(1);
@@ -355,7 +356,6 @@ PHOTOS.forEach(p => {
   const img = new Image();
   img.className = 'photo';
   img.alt = p.cap;
-  img.loading = 'lazy';
   img.decoding = 'async';
   img.onload = () => { fig.hidden = false; loaded++; $('#empty')?.remove(); };
   img.onclick = () => { const lb = $('#lightbox'); lb.querySelector('img').src = p.file; lb.classList.add('on'); };
@@ -366,7 +366,7 @@ PHOTOS.forEach(p => {
   gal.appendChild(fig);
 });
 setTimeout(() => {
-  if(!loaded) gal.insertAdjacentHTML('beforebegin','<p class="empty" id="empty">Photos will appear here 📷</p>');
+  if(!loaded) gal.insertAdjacentHTML('beforebegin','<p class="empty" id="empty">Loading photos… 📷</p>');
 }, 2500);
 
 /* favourites */
