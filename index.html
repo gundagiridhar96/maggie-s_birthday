@@ -88,18 +88,6 @@ button:focus-visible,.photo:focus-visible,.fact:focus-visible{outline:3px solid 
 }
 .reveal{animation:in .6s ease both}
 
-/* gallery */
-.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:16px 0}
-.polaroid{margin:0;background:#fff;padding:8px 8px 10px;box-shadow:0 6px 18px rgba(60,80,120,.18);transform:rotate(-1.5deg);transition:transform .2s}
-.polaroid:nth-child(even){transform:rotate(1.8deg)}
-.polaroid:hover{transform:rotate(0) scale(1.03)}
-.photo{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:var(--sky);cursor:zoom-in;border:0;padding:0}
-.polaroid figcaption{font-family:var(--hand);font-size:1.2rem;margin-top:6px}
-.empty{padding:22px;border-radius:16px;background:var(--lav);color:#6d5c91}
-#lightbox{position:fixed;inset:0;background:rgba(20,25,45,.86);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
-#lightbox.on{display:flex}
-#lightbox img{max-width:100%;max-height:88svh;border-radius:12px;box-shadow:0 10px 40px #000a}
-
 /* quotes & favourites */
 .quote{background:var(--pink-l);border-radius:18px;padding:14px 16px;margin:10px 0;font-family:var(--hand);font-size:1.45rem;line-height:1.35}
 .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;text-align:left}
@@ -122,7 +110,6 @@ button:focus-visible,.photo:focus-visible,.fact:focus-visible{outline:3px solid 
 @keyframes spin{to{transform:rotate(360deg)}}
 
 @media(min-width:620px){
-  .gallery{grid-template-columns:repeat(3,1fr)}
   .facts{grid-template-columns:repeat(4,1fr)}
 }
 @media(prefers-reduced-motion:reduce){
@@ -187,18 +174,6 @@ With love, Sahithi ❤️</div>
     </div>
   </section>
 
-  <!-- 3 · Photos -->
-  <section class="page">
-    <div class="card">
-      <h2>Our Memory Wall 📸</h2>
-      <div class="gallery" id="gallery"></div>
-      <div class="nav">
-        <button class="btn ghost" onclick="go(2)">← Back</button>
-        <button class="btn pink" onclick="go(4)">Next →</button>
-      </div>
-    </div>
-  </section>
-
   <!-- 4 · Quotes + favourites -->
   <section class="page">
     <div class="card">
@@ -209,8 +184,8 @@ With love, Sahithi ❤️</div>
       <h2 style="margin-top:1.2em">Maggie's Favourites 💙</h2>
       <div class="facts" id="facts"></div>
       <div class="nav">
-        <button class="btn ghost" onclick="go(3)">← Back</button>
-        <button class="btn pink" onclick="go(5)">Next →</button>
+        <button class="btn ghost" onclick="go(2)">← Back</button>
+        <button class="btn pink" onclick="go(4)">Next →</button>
       </div>
     </div>
   </section>
@@ -234,8 +209,8 @@ What I love about you:
 
 Once again, happy birthday, Mitapally. You will always be special to me. 💗</div>
       <div class="nav">
-        <button class="btn ghost" onclick="go(4)">← Back</button>
-        <button class="btn pink" onclick="go(6)">Final Surprise →</button>
+        <button class="btn ghost" onclick="go(3)">← Back</button>
+        <button class="btn pink" onclick="go(5)">Final Surprise →</button>
       </div>
     </div>
   </section>
@@ -257,21 +232,11 @@ Once again, happy birthday, Mitapally. You will always be special to me. 💗</d
   </section>
 </main>
 
-<div id="lightbox" onclick="this.classList.remove('on')"><img alt=""></div>
 <button id="music" title="Play / pause music" aria-label="Play or pause music">🎵</button>
 <audio id="audio" src="song.mp3" loop preload="auto"></audio>
 
 <script>
 /* ===== EDIT THESE ===== */
-// Put your photos inside a folder named "photos" and list them here.
-const PHOTOS = [
-  {file:'1.jpg', cap:'Best day ever'},
-  {file:'2.jpg', cap:'Us being us'},
-  {file:'3.jpg', cap:'Favourite memory'},
-  {file:'4.jpg', cap:'Always smiling'},
-  {file:'5.jpg', cap:'Besties 💙'},
-  {file:'6.jpg', cap:'Forever'}
-];
 const FAVS = [
   ['Colour','Blue'],['Food','Noodles'],['Movie','Swapped'],['Subject','Physics'],
   ['Song','Unstoppable'],['Destination','London'],['Season','Summer'],['Book','Atomic Habits']
@@ -290,7 +255,7 @@ function go(n){
   [...dots.children].forEach((d,i) => d.classList.toggle('on', i === n));
   window.scrollTo({top:0,behavior:'smooth'});
   if(n === 0){ setCandles(true); $('#nextCake').hidden = true; }
-  if(n === 6) party();
+  if(n === 5) party();
 }
 
 /* confetti (capped, lightweight) */
@@ -345,29 +310,6 @@ mBtn.onclick = () => audio.paused ? audio.play().then(() => setPlaying(true)) : 
 audio.addEventListener('error', () => mBtn.classList.remove('show'));
 // show the music button only if song.mp3 really exists
 fetch('song.mp3', {method:'HEAD'}).then(r => { if(r.ok) mBtn.classList.add('show'); }).catch(() => {});
-
-/* gallery: only photos that load are shown */
-const gal = $('#gallery');
-let loaded = 0;
-PHOTOS.forEach(p => {
-  const fig = document.createElement('figure');
-  fig.className = 'polaroid';
-  fig.hidden = true;
-  const img = new Image();
-  img.className = 'photo';
-  img.alt = p.cap;
-  img.decoding = 'async';
-  img.onload = () => { fig.hidden = false; loaded++; $('#empty')?.remove(); };
-  img.onclick = () => { const lb = $('#lightbox'); lb.querySelector('img').src = p.file; lb.classList.add('on'); };
-  img.src = p.file;
-  const cap = document.createElement('figcaption');
-  cap.textContent = p.cap;
-  fig.append(img, cap);
-  gal.appendChild(fig);
-});
-setTimeout(() => {
-  if(!loaded) gal.insertAdjacentHTML('beforebegin','<p class="empty" id="empty">Loading photos… 📷</p>');
-}, 2500);
 
 /* favourites */
 $('#facts').innerHTML = FAVS.map(f => `<div class="fact"><small>${f[0]}</small><b>${f[1]}</b> ✨</div>`).join('');
