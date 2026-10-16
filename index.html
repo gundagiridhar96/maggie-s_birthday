@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Happy Birthday Maggie 💗</title>
+<meta name="theme-color" content="#cfe8ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#4a86c5; --blue-d:#2f5f95; --sky:#d6ecff;
+  --pink:#e0709f; --pink-l:#ffd9e8; --lav:#ece3ff;
+  --ink:#33405c; --paper:#fffdfb;
+  --head:'Fredoka','Trebuchet MS',system-ui,sans-serif;
+  --hand:'Caveat','Segoe Script',cursive;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100svh;color:var(--ink);font-family:var(--head);
+  background:linear-gradient(160deg,#dff1ff 0%,#fff0f6 55%,#f1e9ff 100%) fixed;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+main{max-width:760px;margin:0 auto;padding:16px 16px 90px}
+
+/* progress */
+.dots{display:flex;gap:7px;justify-content:center;padding:6px 0 14px}
+.dots i{width:9px;height:9px;border-radius:50%;background:#c9d6ea;transition:.3s}
+.dots i.on{background:var(--pink);width:26px;border-radius:6px}
+
+/* pages */
+.page{display:none}
+.page.active{display:block;animation:in .45s ease both}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.card{
+  background:var(--paper);border-radius:28px;padding:clamp(20px,5vw,36px);
+  box-shadow:0 14px 40px rgba(80,100,150,.16);text-align:center;
+  border:2px solid #fff;outline:2px dashed #f2b6d0;outline-offset:-10px;
+}
+h1{font-weight:600;font-size:clamp(1.9rem,7.5vw,3.2rem);line-height:1.1;margin:.3em 0;color:var(--blue-d)}
+h2{font-weight:600;font-size:clamp(1.3rem,5vw,1.8rem);margin:.3em 0 .6em;color:var(--pink)}
+p{line-height:1.65;margin:.6em 0}
+.sub{color:#6d7a96}
+
+.btn{
+  font:600 1rem var(--head);border:0;border-radius:999px;padding:12px 22px;margin:6px 4px;
+  background:var(--blue);color:#fff;cursor:pointer;box-shadow:0 4px 0 var(--blue-d);
+  transition:transform .12s,box-shadow .12s;
+}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--blue-d)}
+.btn.pink{background:var(--pink);box-shadow:0 4px 0 #b9507c}
+.btn.pink:active{box-shadow:0 1px 0 #b9507c}
+.btn.ghost{background:#fff;color:var(--blue-d);box-shadow:0 4px 0 #c9d6ea}
+.nav{margin-top:18px;display:flex;flex-wrap:wrap;justify-content:center}
+button:focus-visible,.photo:focus-visible,.fact:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+
+/* envelope & cake */
+.big{font-size:clamp(4.5rem,22vw,7rem);line-height:1;display:inline-block;cursor:pointer;background:none;border:0;padding:0}
+.bob{animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px) rotate(-3deg)}}
+.cake-wrap{position:relative;display:inline-block;padding-top:34px}
+.cake-emoji{cursor:default;display:block}
+.candles{position:absolute;top:0;left:50%;transform:translateX(-50%);display:flex;gap:clamp(14px,5vw,24px);z-index:2}
+.candle{position:relative;width:9px;height:30px;border-radius:3px;background:linear-gradient(90deg,#ffd9e8,#ff9cc0);margin-top:6px}
+.candle:nth-child(2){height:36px;margin-top:0;background:linear-gradient(90deg,#d6ecff,#8ec3f5)}
+.flame{
+  position:absolute;left:50%;top:-20px;width:12px;height:20px;margin-left:-6px;
+  background:radial-gradient(ellipse at 50% 70%,#fff6b8 0 25%,#ffc23d 55%,#ff7a2f 100%);
+  border-radius:50% 50% 50% 50%/65% 65% 35% 35%;transform-origin:50% 100%;
+  box-shadow:0 0 14px 5px rgba(255,190,70,.6);
+  opacity:0;transform:scale(.2);transition:opacity .25s,transform .25s;
+}
+.lit .flame{opacity:1;transform:scale(1);animation:flick .5s ease-in-out infinite alternate}
+@keyframes flick{from{transform:scale(1) rotate(-4deg)}to{transform:scale(.92,1.08) rotate(4deg)}}
+.smoke{position:absolute;left:50%;top:-8px;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:#b8c0d4;opacity:0}
+.out .smoke{animation:smoke 1.6s ease-out forwards}
+.candle:nth-child(2) .smoke{animation-delay:.12s}.candle:nth-child(3) .smoke{animation-delay:.24s}
+@keyframes smoke{0%{opacity:.8;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-46px) translateX(8px) scale(3.5)}}
+
+/* letters */
+.letter{
+  font-family:var(--hand);font-size:clamp(1.35rem,4.6vw,1.7rem);line-height:1.5;text-align:left;
+  white-space:pre-wrap;background:#fff8fb;border:1px solid #f7c4d7;border-radius:18px;padding:18px 20px;
+  background-image:repeating-linear-gradient(transparent 0 1.99rem,#f6dbe7 1.99rem 2rem);
+}
+.reveal{animation:in .6s ease both}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:16px 0}
+.polaroid{margin:0;background:#fff;padding:8px 8px 10px;box-shadow:0 6px 18px rgba(60,80,120,.18);transform:rotate(-1.5deg);transition:transform .2s}
+.polaroid:nth-child(even){transform:rotate(1.8deg)}
+.polaroid:hover{transform:rotate(0) scale(1.03)}
+.photo{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:var(--sky);cursor:zoom-in;border:0;padding:0}
+.polaroid figcaption{font-family:var(--hand);font-size:1.2rem;margin-top:6px}
+.empty{padding:22px;border-radius:16px;background:var(--lav);color:#6d5c91}
+#lightbox{position:fixed;inset:0;background:rgba(20,25,45,.86);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+#lightbox.on{display:flex}
+#lightbox img{max-width:100%;max-height:88svh;border-radius:12px;box-shadow:0 10px 40px #000a}
+
+/* quotes & favourites */
+.quote{background:var(--pink-l);border-radius:18px;padding:14px 16px;margin:10px 0;font-family:var(--hand);font-size:1.45rem;line-height:1.35}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;text-align:left}
+.fact{background:#eef6ff;border-radius:16px;padding:12px 14px}
+.fact small{display:block;color:#7a6c91;font-size:.78rem}
+.fact b{font-size:1.05rem;color:var(--blue-d)}
+
+/* effects */
+#fx{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:40}
+.f{position:absolute;bottom:-40px;font-size:26px;animation:rise linear forwards;will-change:transform}
+@keyframes rise{to{transform:translateY(-115vh) rotate(40deg);opacity:0}}
+
+/* music */
+#music{
+  position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));width:54px;height:54px;border-radius:50%;
+  border:0;background:#fff;font-size:1.4rem;box-shadow:0 6px 18px rgba(60,80,120,.3);z-index:45;cursor:pointer;display:none
+}
+#music.show{display:block}
+#music.playing{animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(min-width:620px){
+  .gallery{grid-template-columns:repeat(3,1fr)}
+  .facts{grid-template-columns:repeat(4,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div id="fx" aria-hidden="true"></div>
+<main>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+
+  <!-- 0 · Welcome -->
+  <section class="page active">
+    <div class="card">
+      <div>💙 ✨ 💗</div>
+      <button class="big bob" onclick="start()" aria-label="Open your surprise">💌</button>
+      <h1>A Little Birthday Magic for Maggie</h1>
+      <p><b>Hey, Maggie! 💗</b><br>I've prepared a little surprise just for you.</p>
+      <p class="sub">A gift from Sahithi, with lots of love.</p>
+      <button class="btn pink" onclick="start()">Open your surprise 💌</button>
+    </div>
+  </section>
+
+  <!-- 1 · Cake -->
+  <section class="page">
+    <div class="card">
+      <h1>Happy Birthday, Lecturer! 🥳</h1>
+      <p>To my favourite person, my Maggie 💙</p>
+      <div class="cake-wrap lit" id="cakeWrap">
+        <div class="candles" aria-hidden="true">
+          <span class="candle"><i class="flame"></i><i class="smoke"></i></span>
+          <span class="candle"><i class="flame"></i><i class="smoke"></i></span>
+          <span class="candle"><i class="flame"></i><i class="smoke"></i></span>
+        </div>
+        <div class="big cake-emoji">🎂</div>
+      </div>
+      <p id="wish">Make a wish, then blow out the candles ✨</p>
+      <button class="btn" id="blowBtn" onclick="blow()">Blow the candles 💨</button>
+      <div class="nav">
+        <button class="btn ghost" onclick="go(0)">← Back</button>
+        <button class="btn pink" id="nextCake" onclick="go(2)" hidden>Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Letter -->
+  <section class="page">
+    <div class="card">
+      <h2>Dear Maggie 💌</h2>
+      <div class="letter">Happy birthday to my dear Maggie! 💗
+
+Life became more special when you came into it. Thank you for being my bestie, my safe place, and one of my favourite people. Your loyalty, confidence, kindness, and support mean so much to me.
+
+I hope this new year brings you happiness, courage, beautiful memories, and all the little things your heart wishes for. Never stop being your fearless, wonderful self.
+
+With love, Sahithi ❤️</div>
+      <div class="nav">
+        <button class="btn ghost" onclick="go(1)">← Back</button>
+        <button class="btn pink" onclick="go(3)">Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Photos -->
+  <section class="page">
+    <div class="card">
+      <h2>Our Memory Wall 📸</h2>
+      <div class="gallery" id="gallery"></div>
+      <div class="nav">
+        <button class="btn ghost" onclick="go(2)">← Back</button>
+        <button class="btn pink" onclick="go(4)">Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Quotes + favourites -->
+  <section class="page">
+    <div class="card">
+      <h2>Little Reminders 💕</h2>
+      <div class="quote">“One loyal bestie is better than a hundred fake friends.”</div>
+      <div class="quote">“You are my safe place in this noisy world.”</div>
+      <div class="quote">“In the story of my life, you are the best chapter.”</div>
+      <h2 style="margin-top:1.2em">Maggie's Favourites 💙</h2>
+      <div class="facts" id="facts"></div>
+      <div class="nav">
+        <button class="btn ghost" onclick="go(3)">← Back</button>
+        <button class="btn pink" onclick="go(5)">Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Secret message -->
+  <section class="page">
+    <div class="card">
+      <button class="big bob" id="env" onclick="openSecret()" aria-label="Open the secret message">💌</button>
+      <h2>A Little Secret, Just for You</h2>
+      <p id="tap" class="sub">Tap the envelope to open my message.</p>
+      <div class="letter reveal" id="secret" hidden>Thanks for coming into my life and being my soulmate, my favourite person. 💙
+
+Once again, happy birthday, my dear lecturer! May God bless you, bestie. ❤️
+
+What I love about you:
+• Your innocent face and the way you take care of me
+• Your fearless spirit
+• Your self-respect and self-confidence
+• Your ethics and morals
+• Your loyalty and support
+
+Once again, happy birthday, Mitapally. You will always be special to me. 💗</div>
+      <div class="nav">
+        <button class="btn ghost" onclick="go(4)">← Back</button>
+        <button class="btn pink" onclick="go(6)">Final Surprise →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Finale -->
+  <section class="page">
+    <div class="card">
+      <div style="font-size:2.4rem">🎈 🎊 💖 🎊 🎈</div>
+      <h1>Happy Birthday, Maggie!</h1>
+      <p>May your life be full of love, laughter, bright dreams, and beautiful memories.</p>
+      <h2>Forever Besties 💙💗</h2>
+      <p>Whatever life brings, I'm always cheering for you.</p>
+      <p><b>With love, Sahithi ❤️</b></p>
+      <div class="nav">
+        <button class="btn pink" onclick="party()">Celebrate again 🎉</button>
+        <button class="btn ghost" onclick="go(0)">Start over ↻</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="lightbox" onclick="this.classList.remove('on')"><img alt=""></div>
+<button id="music" title="Play / pause music" aria-label="Play or pause music">🎵</button>
+<audio id="audio" src="song.mp3" loop preload="none"></audio>
+
+<script>
+/* ===== EDIT THESE ===== */
+// Put your photos inside a folder named "photos" and list them here.
+const PHOTOS = [
+  {file:'1.jpg', cap:'Best day ever'},
+  {file:'2.jpg', cap:'Us being us'},
+  {file:'3.jpg', cap:'Favourite memory'},
+  {file:'4.jpg', cap:'Always smiling'},
+  {file:'5.jpg', cap:'Besties 💙'},
+  {file:'6.jpg', cap:'Forever'}
+];
+const FAVS = [
+  ['Colour','Blue'],['Food','Noodles'],['Movie','Swapped'],['Subject','Physics'],
+  ['Song','Unstoppable'],['Destination','London'],['Season','Summer'],['Book','Atomic Habits']
+];
+/* ====================== */
+
+const $ = s => document.querySelector(s);
+const pages = [...document.querySelectorAll('.page')];
+const dots = $('#dots');
+pages.forEach(() => dots.appendChild(document.createElement('i')));
+let cur = 0;
+
+function go(n){
+  cur = n;
+  pages.forEach((p,i) => p.classList.toggle('active', i === n));
+  [...dots.children].forEach((d,i) => d.classList.toggle('on', i === n));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n === 0){ setCandles(true); $('#nextCake').hidden = true; }
+  if(n === 6) party();
+}
+
+/* confetti (capped, lightweight) */
+function party(set = ['🎈','🎉','💗','💙','✨','💖']){
+  const fx = $('#fx');
+  for(let i = 0; i < 24; i++){
+    const s = document.createElement('span');
+    s.className = 'f';
+    s.textContent = set[Math.random() * set.length | 0];
+    s.style.left = Math.random() * 100 + '%';
+    s.style.animationDuration = (2 + Math.random() * 1.8) + 's';
+    fx.appendChild(s);
+    setTimeout(() => s.remove(), 4200);
+  }
+}
+
+function setCandles(lit){
+  const w = $('#cakeWrap');
+  w.classList.toggle('lit', lit);
+  w.classList.remove('out');
+  if(!lit){ void w.offsetWidth; w.classList.add('out'); }   // restart smoke animation
+  $('#blowBtn').textContent = lit ? 'Blow the candles 💨' : 'Light them again 🕯️';
+  $('#wish').textContent = lit
+    ? 'Make a wish, then blow out the candles ✨'
+    : 'Your wish is on its way! Happy birthday, Maggie 💙💗';
+}
+function blow(){
+  const lit = $('#cakeWrap').classList.contains('lit');
+  setCandles(!lit);
+  if(lit){
+    party(['💗','💙','✨','🎊','🥳']);
+    $('#nextCake').hidden = false;      // Next appears only after blowing
+  }
+}
+
+function openSecret(){
+  $('#secret').hidden = false;
+  $('#tap').hidden = true;
+  party(['💗','💙','💌']);
+  $('#secret').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+/* music: browsers only allow sound after a tap, so it starts on "Open" */
+const audio = $('#audio'), mBtn = $('#music');
+function setPlaying(on){ mBtn.classList.toggle('playing', on); mBtn.textContent = on ? '🎶' : '🎵'; }
+function start(){
+  go(1);
+  audio.play().then(() => setPlaying(true)).catch(() => {});
+}
+mBtn.onclick = () => audio.paused ? audio.play().then(() => setPlaying(true)) : (audio.pause(), setPlaying(false));
+audio.addEventListener('error', () => mBtn.classList.remove('show'));
+// show the music button only if song.mp3 really exists
+fetch('song.mp3', {method:'HEAD'}).then(r => { if(r.ok) mBtn.classList.add('show'); }).catch(() => {});
+
+/* gallery: only photos that load are shown */
+const gal = $('#gallery');
+let loaded = 0;
+PHOTOS.forEach(p => {
+  const fig = document.createElement('figure');
+  fig.className = 'polaroid';
+  fig.hidden = true;
+  const img = new Image();
+  img.className = 'photo';
+  img.alt = p.cap;
+  img.loading = 'lazy';
+  img.decoding = 'async';
+  img.onload = () => { fig.hidden = false; loaded++; $('#empty')?.remove(); };
+  img.onclick = () => { const lb = $('#lightbox'); lb.querySelector('img').src = p.file; lb.classList.add('on'); };
+  img.src = p.file;
+  const cap = document.createElement('figcaption');
+  cap.textContent = p.cap;
+  fig.append(img, cap);
+  gal.appendChild(fig);
+});
+setTimeout(() => {
+  if(!loaded) gal.insertAdjacentHTML('beforebegin','<p class="empty" id="empty">Photos will appear here 📷</p>');
+}, 2500);
+
+/* favourites */
+$('#facts').innerHTML = FAVS.map(f => `<div class="fact"><small>${f[0]}</small><b>${f[1]}</b> ✨</div>`).join('');
+
+go(0);
+</script>
+</body>
+</html>
